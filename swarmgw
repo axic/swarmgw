@@ -1,0 +1,43 @@
+#!/usr/bin/env node
+
+const swarmgw = require('./index.js')
+const fs = require('fs')
+
+var yargs = require('yargs')
+  .usage('Usage: $0 [command]')
+  .command('get <hash>', 'Download file by hash')
+  .command('put <filename>', 'Upload file')
+  .strict()
+  .version()
+  .showHelpOnFail(false, 'Specify --help for available options')
+  .help()
+  .demand(1, 'Must provide a command')
+
+var argv = yargs.argv
+var command = argv._[0]
+
+function abort (msg) {
+  console.log(msg || 'Error occured')
+  process.exit(1)
+}
+
+switch (command) {
+  case 'get':
+    swarmgw.get(argv.hash, function (err, ret) {
+      if (err) {
+        abort('Failed to download: ' + err)
+      } else {
+        console.log(ret)
+      }
+    })
+    break
+  case 'put':
+    swarmgw.put(fs.readFileSync(argv.filename), function (err, ret) {
+      if (err) {
+        console.log('Failed to upload: ' + err)
+      } else {
+        console.log('Swarm hash: ' + ret)
+      }
+    })
+    break
+}

@@ -1,0 +1,35 @@
+{
+  "name": "swarmgw",
+  "version": "0.0.0",
+  "description": "Simple interface to swarm-gateways.net",
+  "main": "index.js",
+  "bin": {
+    "swarmgw": "./swarmgw"
+  },
+  "dependencies": {
+    "request": "^2.79.0",
+    "xhr": "^2.3.1",
+    "yargs": "^6.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axic/swarmgw.git"
+  },
+  "keywords": [
+    "ethereum",
+    "swarm"
+  ],
+  "author": "Alex Beregszaszi <alex@rtfs.hu>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/axic/swarmgw/issues"
+  },
+  "homepage": "https://github.com/axic/swarmgw#readme",
+  "browser": {
+    "request": "xhr"
+  }
+}
