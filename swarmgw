@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 
 const swarmgw = require('./index.js')
+const swarmhash = require('swarmhash')
 const fs = require('fs')
 
 var yargs = require('yargs')
   .usage('Usage: $0 [command]')
   .command('get <hash>', 'Download file by hash')
   .command('put <filename>', 'Upload file')
+  .command('calculate <filename>', 'Calculate the hash only without uploading')
   .strict()
   .version()
   .showHelpOnFail(false, 'Specify --help for available options')
@@ -39,5 +41,8 @@ switch (command) {
         console.log('Swarm hash: ' + ret)
       }
     })
+    break
+  case 'calculate':
+    console.log('Swarm hash: ' + swarmhash(fs.readFileSync(argv.filename)).toString('hex'))
     break
 }

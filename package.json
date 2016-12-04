@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "request": "^2.79.0",
+    "swarmhash": "^0.1.0",
     "xhr": "^2.3.1",
     "yargs": "^6.5.0"
   },
