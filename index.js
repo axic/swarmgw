@@ -4,12 +4,8 @@ function isValidHash (hash) {
   return /^[0-9a-f]{64}$/.test(hash)
 }
 
-function getFile (hash, cb) {
-  if (!isValidHash(hash)) {
-    return cb('Invalid hash')
-  }
-
-  request('http://swarm-gateways.net/bzzr:/' + hash, function (error, response, body) {
+function getFile (url, cb) {
+  request('http://swarm-gateways.net/' + url, function (error, response, body) {
     if (!error & response.statusCode === 200) {
       cb(null, body)
     } else {
