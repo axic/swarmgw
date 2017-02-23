@@ -6,7 +6,7 @@ const fs = require('fs')
 
 var yargs = require('yargs')
   .usage('Usage: $0 [command]')
-  .command('get <hash>', 'Download file by hash')
+  .command('get <url>', 'Download content')
   .command('put <filename>', 'Upload file')
   .command('calculate <filename>', 'Calculate the hash only without uploading')
   .strict()
@@ -25,7 +25,7 @@ function abort (msg) {
 
 switch (command) {
   case 'get':
-    swarmgw.get(argv.hash, function (err, ret) {
+    swarmgw.get(argv.url, function (err, ret) {
       if (err) {
         abort('Failed to download: ' + err)
       } else {
