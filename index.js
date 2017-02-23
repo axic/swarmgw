@@ -6,10 +6,12 @@ function isValidHash (hash) {
 
 function getFile (url, cb) {
   request('http://swarm-gateways.net/' + url, function (error, response, body) {
-    if (!error & response.statusCode === 200) {
-      cb(null, body)
-    } else {
+    if (error) {
       cb(error)
+    } else if (response.statusCode !== 200) {
+      cb(body)
+    } else {
+      cb(null, body)
     }
   })
 }
@@ -20,14 +22,14 @@ function putFile (content, cb) {
     uri: 'http://swarm-gateways.net/bzzr:/',
     body: content
   }, function (error, response, body) {
-    if (!error & response.statusCode === 200) {
-      if (!isValidHash(body)) {
-        return cb('Invalid hash')
-      }
-
-      cb(null, body)
-    } else {
+    if (error) {
       cb(error)
+    } else if (response.statusCode !== 200) {
+      cb(body)
+    } else if (!isValidHash(body)) {
+      cb('Invalid hash')
+    } else {
+      cb(null, body)
     }
   })
 }
