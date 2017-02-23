@@ -19,7 +19,7 @@ swarmgw.put('Hello from swarmgw!', function (err, ret) {
 })
 
 // This should output the content: Hello from swarmgw!
-swarmgw.get('931cc5a6bd57724ffd1adefc0ea6b4f0235497fca9e4f9ae4029476bcb51a8c6', function (err, ret) {
+swarmgw.get('bzzr://931cc5a6bd57724ffd1adefc0ea6b4f0235497fca9e4f9ae4029476bcb51a8c6', function (err, ret) {
   if (err) {
     abort('Failed to download: ' + err)
   } else {
