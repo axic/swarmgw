@@ -4,7 +4,7 @@ function isValidHash (hash) {
   return /^[0-9a-f]{64}$/.test(hash)
 }
 
-function getFile (url, cb) {
+function getFile (gateway, url, cb) {
   request('https://swarm-gateways.net/' + url, function (error, response, body) {
     if (error) {
       cb(error)
@@ -16,7 +16,7 @@ function getFile (url, cb) {
   })
 }
 
-function putFile (content, cb) {
+function putFile (gateway, content, cb) {
   request({
     method: 'POST',
     uri: 'https://swarm-gateways.net/bzz-raw:/',
@@ -34,7 +34,22 @@ function putFile (content, cb) {
   })
 }
 
-module.exports = {
-  get: getFile,
-  put: putFile
+module.exports = function (opts) {
+  opts = opts || {}
+  var gateway
+  if (opts.gateway) {
+    gateway = opts.gateway
+  } else if (opts.mode === 'http') {
+    gateway = 'http://swarm-gateways.net'
+  } else {
+    gateway = 'https://swarm-gateways.net'
+  }
+  return {
+    get: function (url, cb) {
+      return getFile(gateway, url, cb)
+    },
+    put: function (content, cb) {
+      return putFile(gateway, content, cb)
+    }
+  }
 }
