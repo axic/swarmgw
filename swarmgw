@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const swarmgw = require('./index.js')
+const swarmgw = require('./index.js')()
 const swarmhash = require('swarmhash')
 const fs = require('fs')
 
