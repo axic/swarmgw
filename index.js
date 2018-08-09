@@ -19,7 +19,7 @@ function getFile (url, cb) {
 function putFile (content, cb) {
   request({
     method: 'POST',
-    uri: 'http://swarm-gateways.net/bzzr:/',
+    uri: 'http://swarm-gateways.net/bzz-raw:/',
     body: content
   }, function (error, response, body) {
     if (error) {
