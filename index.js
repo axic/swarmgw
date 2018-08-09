@@ -5,7 +5,7 @@ function isValidHash (hash) {
 }
 
 function getFile (url, cb) {
-  request('http://swarm-gateways.net/' + url, function (error, response, body) {
+  request('https://swarm-gateways.net/' + url, function (error, response, body) {
     if (error) {
       cb(error)
     } else if (response.statusCode !== 200) {
@@ -19,7 +19,7 @@ function getFile (url, cb) {
 function putFile (content, cb) {
   request({
     method: 'POST',
-    uri: 'http://swarm-gateways.net/bzz-raw:/',
+    uri: 'https://swarm-gateways.net/bzz-raw:/',
     body: content
   }, function (error, response, body) {
     if (error) {

@@ -1,6 +1,6 @@
 # swarmgw
 
-This library can be used to upload/download files to Swarm via http://swarm-gateways.net/
+This library can be used to upload/download files to Swarm via https://swarm-gateways.net/
 
 **Note that while this is a convenient feature as of today, it may not be present indefinitely.**
 
